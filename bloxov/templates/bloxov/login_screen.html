@@ -1,0 +1,24 @@
+{% extends 'bloxov/main.html' %}
+
+{% block content %}
+
+    <form class="col-sm-6 col-sm-offset-6 post-form text-center" method="POST">
+        <br>
+        <h3>Přihlášení</h3>
+        {% csrf_token %}
+        <br><br><br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="jmeno" type="text" class="form-control" name="username"
+                       placeholder="Přihlašovací jméno">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input id="heslo" type="password" class="form-control" name="password" placeholder="Heslo">
+            </div>
+        <br>
+        <button type="submit" class="save btn btn-default">Přihlásit se</button>
+        <br><br><br><br><br><br><br><br>
+    </form>
+{% endblock %}

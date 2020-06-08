@@ -1,0 +1,118 @@
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+
+<html>
+    <head>
+        <title>Bloxov</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/"><strong>BLOXOV</strong></a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/uredni-deska">Úřední deska</a></li>
+                        <li><a href="/internet">Internet</a></li>
+                        <li><a href="/instablox">InstaBlox</a></li>
+                        <li><a href="/blox-news">Blox News</a></li>
+                        <li><a href="/bazos">Bazoš</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                            <li><a href="/profil"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+                            <li><a href="/odhlaseni"><span class="glyphicon glyphicon-log-in"></span> Odhlášení</a></li>
+                        {% else %}
+                            <li><a href="/registrace"><span class="glyphicon glyphicon-user"></span> Registrace</a></li>
+                            <li><a href="/prihlaseni"><span class="glyphicon glyphicon-log-in"></span> Přihlášení</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    <div class="col-md-1"> </div>
+                    {% if user.is_authenticated %}
+                        <div class="col-md-3 pravy-pruh"
+                             style="background-image: linear-gradient(#DFF0F8, #BADFF1); border: 1.5px solid #BCE8F1;
+                             border-radius: 3px;">
+                            <h4 style="font-weight: bold; color: black;">Tvé postavy:</h4>
+                            <ul>
+                                {% for postava in postavy %}
+                                    {% if postava.majitel.id == user.id %}
+                                        <li>{{ postava.cele_jmeno }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <div class="alert alert-danger text-center" style="font-weight: bold;">
+                                Nemůžeš mít více než 3 postavy!
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+        <br>
+
+        <footer class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8">
+                    <p>(popis Bloxova)</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque eget nunc ut
+                        tempus. In et interdum nibh. Aenean scelerisque ipsum eu viverra fringilla. Praesent in
+                        risus ultrices, rhoncus arcu dapibus, vestibulum ex. Nulla tristique pretium nibh, vel
+                        pulvinar purus condimentum vel. Sed iaculis, sem ut accumsan convallis, enim lacus rhoncus
+                        ligula, ut finibus ante odio vel mauris. Aenean pharetra lorem metus, id cursus libero
+                        blandit a.
+                    </p>
+                    <p>
+                        Suspendisse mattis velit eu elit fringilla posuere. Suspendisse faucibus interdum elit eget
+                        pulvinar. Etiam at ex vehicula sem efficitur porta vel aliquam risus. Fusce id nisi nisl.
+                        Aenean dictum nibh ac risus commodo, non feugiat mauris ullamcorper. Pellentesque sagittis,
+                        turpis non ultricies rhoncus, neque lectus aliquam felis, id tristique leo mauris id ligula.
+                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        Proin magna est, posuere sit amet nunc quis, fermentum consectetur libero.
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <h4 style="font-weight: bold;">Odkazy:</h4>
+                        <a href="https://discord.gg/unt5tVU" target="_blank">
+                            <i class="fab fa-discord"></i>
+                            Czech People Discord
+                        </a>
+                    <br>
+                        <a href="https://www.roblox.com/groups/5163582/CP-Bloxov#!/about" target="_blank">
+                            <i class="fab fa-bitbucket"></i>
+                            Czech People || Bloxov Group
+                        </a>
+                    <br>
+                        <a href="https://www.roblox.com/games/3887336971/BLOXOV-II?refPageId=8e93750c-4cf4-45b8-95a2-7954515c9935"
+                        target="_blank">
+                            <i class="fab fa-bitbucket"></i>
+                            Bloxov hra na Robloxu
+                        </a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

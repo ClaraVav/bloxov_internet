@@ -1,0 +1,28 @@
+{% extends 'bloxov/main.html' %}
+
+{% block content %}
+    <div class="clanek">
+        <h3 style="font-weight: bold; color: black;">{{ clanek.titulek }}</h3>
+        <small>Autor: {{ clanek.autor }} / {{ clanek.postava.cele_jmeno }}</small><br>
+        {% if clanek.publikovano %}
+            <small>Publikováno: {{ clanek.publikovano }}</small>
+        {% endif %}
+        <hr>
+        <p>{{ clanek.obsah|linebreaksbr }}</p>
+        {% if clanek.obrazek %}
+            {{ clanek.obrazek }}
+        {% endif %}
+        {% if clanek.kategorie == 2 %}
+            <p>{{ clanek.postava.cele_jmeno }} pro BloxNews</p>
+        {% endif %}
+        {% if clanek.obrazek %}
+            {{ clanek.obrazek }}
+        {% endif %}
+        <hr>
+        {% if clanek.autor == user.username or user.is_staff %}
+            <button type="button" class="btn btn-primary">Upravit</button>
+            <button type="button" class="btn btn-danger">Smazat</button>
+        {% endif %}
+        <br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+{% endblock %}

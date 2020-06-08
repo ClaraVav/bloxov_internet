@@ -1,0 +1,21 @@
+{% extends 'bloxov/main.html' %}
+
+{% block content %}
+    <form class="col-sm-6 col-sm-offset-6 post-form text-center" method="POST">
+        <br>
+        <h3>Registrace</h3>
+        {% csrf_token %}
+        <br><br><br>
+            <input id="jmeno" type="text" class="form-control" name="username"
+            placeholder="Přihlašovací jméno">
+        <br>
+            <input id="heslo" type="password" class="form-control" name="password1"
+            placeholder="Heslo">
+        <br>
+            <input id="heslo_2" type="password" class="form-control" name="password2"
+            placeholder="Heslo znovu">
+        <br><br>
+            <button type="submit" class="save btn btn-default">Založit účet</button>
+        <br><br><br><br><br>
+    </form>
+{% endblock %}

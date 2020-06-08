@@ -1,0 +1,39 @@
+h3, main h4 {
+    color: blue;
+}
+
+h1 {
+    text-align: center;
+}
+
+footer {
+    background-color: rgb(77, 77, 77);
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:hover h3, a:hover h4 {
+    font-weight: bold;
+
+
+label {
+    font-weight: bold;
+    color: blue;
+}
+
+footer h4 {
+    font-weight: bold;
+    color: white;
+}
+
+main {
+    margin: 5px;
+}
